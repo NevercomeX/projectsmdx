@@ -1,0 +1,112 @@
+# 💬 Proyecto: Global Chat 💬
+
+<CalloutBox type="info">
+  Este proyecto es un **chat global interactivo**, desarrollado con **Next.js 13+** y **React**. Implementa funcionalidades dinámicas, como envío de mensajes en tiempo real y un scroll automático en el área de chat. A continuación, te mostraré cómo se desarrolló, las decisiones técnicas clave y las habilidades involucradas.
+</CalloutBox>
+
+---
+
+## 💡 Descripción del Proyecto
+
+El **Global Chat** es una aplicación diseñada para demostrar las capacidades de **Next.js** y **React** en la creación de interfaces dinámicas. Permite a los usuarios enviar mensajes que se muestran en tiempo real dentro de un contenedor de chat estilizado. Además, el sistema gestiona avatares, fechas relativas y asegura un **scroll automático controlado**.
+
+<HeroImage src="https://i.imgur.com/xJ8FXua.png" alt="Interfaz del Chat" />
+
+---
+
+## 🚀 Tecnologías Utilizadas
+
+Implementé una serie de tecnologías modernas para garantizar un desarrollo eficiente y una experiencia fluida.
+
+<TabGroup
+  tabs={[
+    {
+      title: "Next.js 13",
+      content: (
+        <p>
+          Utilicé <strong>Next.js</strong> para desarrollar el proyecto, 
+          aprovechando la estructura de **App Directory** y sus beneficios 
+          para la creación de aplicaciones interactivas.
+        </p>
+      ),
+    },
+    {
+      title: "React",
+      content: (
+        <p>
+          Todo el frontend se construyó con **React**, lo que permitió el uso 
+          eficiente de <strong>hooks</strong> como <code>useState</code> y 
+          <code>useEffect</code> para la lógica de la interfaz y el manejo 
+          de estado.
+        </p>
+      ),
+    },
+    {
+      title: "Tailwind CSS",
+      content: (
+        <p>
+          Empleé <strong>Tailwind CSS</strong> para un diseño moderno y adaptable, 
+          con componentes estilizados de manera eficiente y coherente.
+        </p>
+      ),
+    },
+    {
+      title: "TypeScript",
+      content: (
+        <p>
+          La aplicación está desarrollada con **TypeScript**, lo que asegura un 
+          código más seguro y fácil de mantener, gracias a su tipado estático.
+        </p>
+      ),
+    },
+  ]}
+/>
+
+<FeatureCard
+  title="Scroll Automático"
+  description="El chat realiza un scroll automático hacia el último mensaje enviado, asegurando una experiencia de usuario fluida."
+  iconName="arrow-down"
+/>
+
+<FeatureCard
+  title="Optimización con React Hooks"
+  description="Utilicé hooks como useState y useEffect para manejar el estado de los mensajes y el efecto de scroll."
+  iconName="code"
+/>
+
+<FeatureCard
+  title="Diseño Responsivo"
+  description="El diseño está optimizado con Tailwind CSS, asegurando una visualización correcta en cualquier dispositivo."
+  iconName="mobile"
+/>
+
+---
+
+## ⚙️ Características Técnicas
+
+1. **Envío de Mensajes en Tiempo Real:**  
+   Los mensajes se añaden dinámicamente a la lista sin necesidad de recargar la página.
+
+2. **Scroll Automático Inteligente:**  
+   El área del chat realiza un **scroll automático** solo cuando se agregan nuevos mensajes, sin afectar el scroll general de la página.
+
+3. **Formatos de Fecha Relativos:**  
+   Se implementó una función que convierte fechas en tiempos relativos como "Just now" o "5 min ago".
+
+4. **Avatares Personalizados:**  
+   Cada mensaje incluye un avatar dinámico basado en el usuario, con un ícono por defecto cuando no existe una imagen.
+
+---
+
+## 🛠️ Código Clave
+
+A continuación, muestro fragmentos clave del código utilizado:
+
+### 📌 Scroll Automático con React Hooks
+
+```tsx
+const messagesEndRef = useRef<HTMLDivElement>(null);
+
+useEffect(() => {
+  messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+}, [messages]);
